@@ -7,7 +7,7 @@ KeyMoji 關鍵情緒偵測 (**SENSE2、SENSE8、Tension**) 採用不同於其它
 ## 安裝方法
 
 ```sh
-pip3 install KeyMoji
+pip3 install KeyMojiAPI
 ```
 
 ## 使用方法
