@@ -1,0 +1,979 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+    <link href="images/favicon.png" rel="icon" type="image/png" />
+
+    <style media="screen">
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf, .highlight .fm {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv, .highlight .vm {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #f92672;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <style media="print">
+      * {
+        -webkit-transition:none!important;
+        transition:none!important;
+      }
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #586e75;
+}
+.highlight .err {
+  color: #002b36;
+  background-color: #dc322f;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #657b83;
+}
+.highlight .cp {
+  color: #b58900;
+}
+.highlight .nt {
+  color: #b58900;
+}
+.highlight .o, .highlight .ow {
+  color: #93a1a1;
+}
+.highlight .p, .highlight .pi {
+  color: #93a1a1;
+}
+.highlight .gi {
+  color: #859900;
+}
+.highlight .gd {
+  color: #dc322f;
+}
+.highlight .gh {
+  color: #268bd2;
+  background-color: #002b36;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #6c71c4;
+}
+.highlight .kc {
+  color: #cb4b16;
+}
+.highlight .kt {
+  color: #cb4b16;
+}
+.highlight .kd {
+  color: #cb4b16;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #859900;
+}
+.highlight .sa {
+  color: #6c71c4;
+}
+.highlight .sr {
+  color: #2aa198;
+}
+.highlight .si {
+  color: #d33682;
+}
+.highlight .se {
+  color: #d33682;
+}
+.highlight .nn {
+  color: #b58900;
+}
+.highlight .nc {
+  color: #b58900;
+}
+.highlight .no {
+  color: #b58900;
+}
+.highlight .na {
+  color: #268bd2;
+}
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #859900;
+}
+.highlight .ss {
+  color: #859900;
+}
+    </style>
+    <link href="stylesheets/screen-849c4fff.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-772a6e2a.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all_nosearch-8f5ea5a5.js"></script>
+
+    <script>
+      $(function() { setupCodeCopy(); });
+    </script>
+  </head>
+
+  <body class="index" data-languages="[&quot;python&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar-cad8cdcb.png" alt="" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo-e4b85fef.png" class="logo" alt="" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="python">Python</a>
+        </div>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#KeyMojiAPI" class="toc-h1 toc-link" data-title="KeyMojiAPI">KeyMojiAPI</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#KeyMoji_1" class="toc-h2 toc-link" data-title="KeyMoji">KeyMoji</a>
+                  </li>
+                  <li>
+                    <a href="#KeyMoji_2" class="toc-h2 toc-link" data-title="sense2">sense2</a>
+                  </li>
+                  <li>
+                    <a href="#KeyMoji_3" class="toc-h2 toc-link" data-title="sense8">sense8</a>
+                  </li>
+                  <li>
+                    <a href="#KeyMoji_4" class="toc-h2 toc-link" data-title="tension">tension</a>
+                  </li>
+                  <li>
+                    <a href="#KeyMoji_5" class="toc-h2 toc-link" data-title="keymoji2visual">keymoji2visual</a>
+                  </li>
+              </ul>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='https://api.droidtown.co/login/'>註冊取得 API Key 開始使用</a></li>
+            <li><a href='https://www.droidtown.co/'>Documentation Powered by Droidtown</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='KeyMojiAPI'>KeyMojiAPI</h1><h2 id='KeyMoji_1'>KeyMoji</h2>
+<blockquote>
+<p>範例程式:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">KeyMojiAPI</span> <span class="kn">import</span> <span class="n">KeyMoji</span>
+<span class="n">keymoji</span> <span class="o">=</span> <span class="n">KeyMoji</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">"your_username@mail.com"</span><span class="p">,</span> <span class="n">keymojiKey</span><span class="o">=</span><span class="s">"your_keymoji_key"</span><span class="p">)</span>
+</code></pre></div>
+<p>初始化 KeyMojiAPI。</p>
+<h3>參數說明</h3>
+<table><thead>
+<tr>
+<th>參數</th>
+<th>型態</th>
+<th style="text-align: center">預設</th>
+<th>功能</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>username</strong></td>
+<td>str</td>
+<td style="text-align: center">&quot;&quot;</td>
+<td>您在本站註冊時所使用的帳號 (email)。</br><code>KeyMoji Docker 版本無需設定此參數。</code></td>
+</tr>
+<tr>
+<td><strong>keymojiKey</strong></td>
+<td>str</td>
+<td style="text-align: center">&quot;&quot;</td>
+<td>在本站購買<code>KeyMoji</code>服務，完成付費後取得的一個具有 31 字符長度的字串。</br><code>KeyMoji Docker 版本無需設定此參數。</code></td>
+</tr>
+<tr>
+<td><strong>url</strong></td>
+<td>str</td>
+<td style="text-align: center">&quot;https://api.droidtown.co/KeyMoji&quot;</td>
+<td>若您購買 KeyMoji Docker 版本，請設定自行架設 KeyMoji Docker 的服務網址。</td>
+</tr>
+</tbody></table>
+<h2 id='KeyMoji_2'>sense2</h2>
+<blockquote>
+<p>範例程式:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="n">inputSTR</span> <span class="o">=</span> <span class="s">"他逃離了危險的災難"</span>
+<span class="n">sense2Result</span> <span class="o">=</span> <span class="n">keymoji</span><span class="p">.</span><span class="n">sense2</span><span class="p">(</span><span class="n">inputSTR</span><span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<p>回傳結果 (JSON 格式):</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success!"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2798</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sentiment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"positive"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"input_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"他逃離了危險的災難"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"cursing"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"sense"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sense2"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v101"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3>參數說明</h3>
+<table><thead>
+<tr>
+<th>參數</th>
+<th>型態</th>
+<th style="text-align: center">預設</th>
+<th>功能</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>inputSTR</strong></td>
+<td>str</td>
+<td style="text-align: center">&quot;&quot;</td>
+<td>將要送上 KeyMoji 情緒偵測處理的文字。<br><code>注意！每次最大長度不得超過 6000 個字符</code>。</td>
+</tr>
+<tr>
+<td>contextSenitivity</td>
+<td>bool</td>
+<td style="text-align: center">True</td>
+<td>語境敏感開關，預設為 True。此參數為 True 時，前句的句子若有分數，若此句計算的結果無分數，則前句的分數會延續影響此句分數，直到下一句計算的結果有分數。</br>例如：<br><strong><code>contextSenitivity</code></strong> = <strong>True</strong>，<br><strong><code>inputSTR</code></strong> = <strong>&quot;好不容易離開思念的軌跡，回憶將我聯繫到過去&quot;</strong>，<br>結果為：<br><strong>&quot;好不容易離開思念的軌跡&quot;</strong> =&gt; -0.6043, <strong>&quot;回憶將我聯繫到過去&quot;</strong> =&gt; <strong><code>-0.4532</code></strong>；<br>反之，參數為 <strong>False</strong> 時，<strong>&quot;回憶將我聯繫到過去&quot;</strong> =&gt; <strong><code>0</code></strong>。</td>
+</tr>
+</tbody></table>
+<h3>回傳內容說明</h3>
+<table><thead>
+<tr>
+<th>回傳訊息</th>
+<th style="text-align: center">型態</th>
+<th>說明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td style="text-align: center">bool</td>
+<td>若成功執行並收到情緒偵測結果，回傳 <strong>True</strong>；失敗，則回傳 <strong>False</strong>。</td>
+</tr>
+<tr>
+<td>msg</td>
+<td style="text-align: center">str</td>
+<td>可能為以下的文字：</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Success!</strong>: 順利完成情緒偵測作業。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Invalid arguments.</strong>: 上傳參數錯誤，請重新檢查上傳時的參數是否符合規則名稱。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Invalid content_type.</strong>: 上傳格式必須為 Json 格式 (application/json)。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Your input_str is too long (over 6000 characters.)</strong>: input_str 超過 6000 字符。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Authentication Failed.</strong>: 無法驗証您的帳號，或是未購買<em>KeyMoji</em>方案。請再檢查一次您使用的帳號是否正確。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Invalid KeyMoji_Key.</strong>: 無效的 keymoji_key。請再檢查一次您的 keymoji_key 是否正確。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Invalid sense.</strong>: <strong>sense</strong> 所指定的參數不存在。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>request[&#39;context_sensitivity&#39;] only takes True/False.</strong>: <strong>context_sensitivity</strong> 只能是 boolean 格式。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>request[&#39;sense&#39;] should be set as &#39;tension&#39;, &#39;sense2&#39; or &#39;sense8&#39;, other settings don&#39;t make any sense to KeyMoji.</strong>: <strong>sense</strong> 需要指定其參數為 &#39;tension&#39;, &#39;sense2&#39; 或 &#39;sense8&#39; 字串。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Interval Server Error. (System will reboot in 5min, please try again later.)</strong>: 嗯…似乎我們的伺服器出了點狀況。我們正在努力修復中，5 分鐘內會自動重啟，請稍後再試一次。</td>
+</tr>
+<tr>
+<td>sense</td>
+<td style="text-align: center">str</td>
+<td>此次情緒偵測所使用的功能。</br><strong><code>此範例為 sense2。</code></strong></td>
+</tr>
+<tr>
+<td>results</td>
+<td style="text-align: center">list</td>
+<td>以句子為一個單位，將計算結果存儲至 dict，內容包含以下</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>inputSTR</strong>: 單句的文字字串。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>cursing</strong>: <code>input_str</code> 是否含有國罵的文字內容，例：XX娘。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>score</strong>: 計算 <code>input_str</code> 的情緒分數。<code>若</code><strong><code>context_sensitivity</code></strong><code>== **True** 時，會受到前句的結果影響，不同於單句計算的分數。</code></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>sentiment</strong>: 依據語意計算結果判斷 <code>input_str</code> 的表述，屬於在人類情緒光譜上哪個分佈位置：</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>&emsp;&emsp;&emsp;&emsp;&emsp;--<strong>positive</strong>: 正向表述 <code>(0.2, 1]</code></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>&emsp;&emsp;&emsp;&emsp;&emsp;--<strong>negative</strong>: 負向表述 <code>[-1, -0.2)</code></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>&emsp;&emsp;&emsp;&emsp;&emsp;--<strong>neutral</strong>: 中性表述 <code>[-0.2, -0.2]</code></td>
+</tr>
+</tbody></table>
+<h2 id='KeyMoji_3'>sense8</h2>
+<p>情緒又稱「情感」，是動物出於本能與生俱來的多種感覺、思想和行為綜合產生的心理和生理狀態，並與我們生活息息相關。有些複雜情緒必須經過與他人互動才能學習到，因此每個人所擁有的情緒數量和對情緒的定義都不一樣。</br>
+KeyMoji 依據美國心理學家 <a href="https://en.wikipedia.org/wiki/Robert_Plutchik">Robert Plutchik</a> 提出<code>八種</code>主要的成對兩極核心情緒，分別為 <strong>Anger</strong>、<strong>Anticipation</strong>、<strong>Disgust</strong>、<strong>Fear</strong>、<strong>Joy</strong>、<strong>Sadness</strong>、<strong>Surprise</strong>、<strong>Trust</strong> 來做計算。</br>
+<p align="center"><img src="images/KeyMoji_img05-16b589e1.png" title="wheel of emotions" alt="情緒輪" /></p></p>
+
+<blockquote>
+<p>範例程式:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="n">inputSTR</span> <span class="o">=</span> <span class="s">"他逃離了危險的災難"</span>
+<span class="n">sense8Result</span> <span class="o">=</span> <span class="n">keymoji</span><span class="p">.</span><span class="n">sense8</span><span class="p">(</span><span class="n">inputSTR</span><span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<p>回傳結果 (JSON 格式):</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success!"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"input_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"他逃離了危險的災難"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"Joy"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.7486</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"Trust"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.1776</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"Surprise"</span><span class="p">:</span><span class="w"> </span><span class="mf">6.7238</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"Anticipation"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9618</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"Fear"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9505</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"Sadness"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9108</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"Anger"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9516</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"Disgust"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8876</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"sense"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sense8"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v101"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3>參數說明</h3>
+<table><thead>
+<tr>
+<th>參數</th>
+<th>型態</th>
+<th style="text-align: center">預設</th>
+<th>功能</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>inputSTR</strong></td>
+<td>str</td>
+<td style="text-align: center">&quot;&quot;</td>
+<td>將要送上 KeyMoji 情緒偵測處理的文字。<br><code>注意！每次最大長度不得超過 6000 個字符</code>。</td>
+</tr>
+</tbody></table>
+
+<p>PS.關於<a href="https://en.wikipedia.org/wiki/Emotion" title="Wiki Emotion">SENSE8</a>八個維度參考的來源。</p>
+<h3>回傳內容說明</h3>
+<table><thead>
+<tr>
+<th>回傳訊息</th>
+<th style="text-align: center">型態</th>
+<th>說明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td style="text-align: center">bool</td>
+<td>若成功執行並收到情緒偵測結果，回傳 <strong>True</strong>；失敗，則回傳 <strong>False</strong>。</td>
+</tr>
+<tr>
+<td>msg</td>
+<td style="text-align: center">str</td>
+<td>可能為以下的文字：</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Success!</strong>: 順利完成情緒偵測作業。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Invalid arguments.</strong>: 上傳參數錯誤，請重新檢查上傳時的參數是否符合規則名稱。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Invalid content_type.</strong>: 上傳格式必須為 Json 格式 (application/json)。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Your input_str is too long (over 6000 characters.)</strong>: input_str 超過 6000 字符。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Authentication Failed.</strong>: 無法驗証您的帳號，或是未購買<em>KeyMoji</em>方案。請再檢查一次您使用的帳號是否正確。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Invalid KeyMoji_Key.</strong>: 無效的 keymoji_key。請再檢查一次您的 keymoji_key 是否正確。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Invalid sense.</strong>: <strong>sense</strong> 所指定的參數不存在。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>request[&#39;context_sensitivity&#39;] only takes True/False.</strong>: <strong>context_sensitivity</strong> 只能是 boolean 格式。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>request[&#39;sense&#39;] should be set as &#39;tension&#39;, &#39;sense2&#39; or &#39;sense8&#39;, other settings don&#39;t make any sense to KeyMoji.</strong>: <strong>sense</strong> 需要指定其參數為 &#39;tension&#39;, &#39;sense2&#39; 或 &#39;sense8&#39; 字串。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Interval Server Error. (System will reboot in 5min, please try again later.)</strong>: 嗯…似乎我們的伺服器出了點狀況。我們正在努力修復中，5 分鐘內會自動重啟，請稍後再試一次。</td>
+</tr>
+<tr>
+<td>sense</td>
+<td style="text-align: center">str</td>
+<td>此次情緒偵測所使用的功能。</br><strong><code>此範例為 sense8。</code></strong></td>
+</tr>
+<tr>
+<td>results</td>
+<td style="text-align: center">list</td>
+<td>以句子為一個單位，將計算結果存儲至 dict，內容包含四種 正/負向情緒，共八種情緒分數[0, 12.5]</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>inputSTR</strong>: 單句的文字字串。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Anger</strong>: 負向情緒分數，在 <strong>inputSTR</strong> 裡存在「憤怒」語意意涵的指數。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Disgust</strong>: 負向情緒分數，在 <strong>inputSTR</strong> 裡存在「噁心」語意意涵的指數。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Fear</strong>: 負向情緒分數，在 <strong>inputSTR</strong> 裡存在「恐懼」語意意涵的指數。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Sadness</strong>: 負向情緒分數，在 <strong>inputSTR</strong> 裡存在「悲傷」語意意涵的指數。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Joy</strong>: 正向情緒分數，在 <strong>inputSTR</strong> 裡存在「歡樂」語意意涵的指數。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Anticipation</strong>: 正向情緒分數，在 <strong>inputSTR</strong> 裡存在「期待」語意意涵的指數。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Surprise</strong>: 正向情緒分數，在 <strong>inputSTR</strong> 裡存在「驚喜」語意意涵的指數。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Trust</strong>: 正向情緒分數，在 <strong>inputSTR</strong> 裡存在「信任」語意意涵的指數。</td>
+</tr>
+</tbody></table>
+<h3>PS.<a href="https://en.wikipedia.org/wiki/Robert_Plutchik" title="Theories of emotion">八維度核心情緒分類</a>請參考下表：</h3>
+<p><img src="images/KeyMoji_img06-9e9f01c9.png" title="Sense8" alt="八維度核心情緒" /></p>
+<h2 id='KeyMoji_4'>tension</h2>
+<blockquote>
+<p>範例程式:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="n">inputSTR</span> <span class="o">=</span> <span class="s">"""我想向各位更新我們的努力成果，曝光在那荒謬、漫長的11月3日選舉中所發生的大面積選舉舞弊和各種不正常的現象。
+我們以前有所謂的「選舉日」，現在卻拖延成好幾個選舉週、選舉月，這段時間裡許多不好的事發生了，特別是我們得去證明那些原本我們不需要去驗證的事，才得以執行我們最偉大的特權——選舉權。
+作為總統，我責無旁貸，保護這個國家的法律和憲法，所以我決心保障我們的選舉系統。
+而這個系統正遭受合謀攻擊。在總統選舉前的幾個月，我們被多次警告，不要過早宣告我們的勝選；我們反覆被告知，這場選舉將耗時幾週甚至幾個月來分出勝、來數缺席者選票，並確認結果。
+我的對手被告知：「可以與選舉保持距離，不需要競選活動。我們不需要你。我們搞定了，這場選舉已經結束。」
+實際上，他們的表現得好像他們早已知道了這場選舉的結果。一切都在他們的掌控之中。很可能是這樣，這對我們的國家來說是非常悲哀的。
+這一切（發生的事情）都非常奇怪。在選舉後的幾天，我們見證了這場試圖決定勝者的操作。即使許多關鍵州仍然在計算選票。
+我們必須繼續依循憲法流程，為維護選舉的誠信，我們將確保計算每張合法選票，不計算任何一張非法選票。這不只是為了尊重那7,400萬選我的美國人，也是為了確保美國人能對這場選舉、以致未來的選舉還能保有信心。
+今天我將詳細說明我們近幾週所揭露的那些驚人、不符合常規的濫權舞弊行為，呈現給各位我們所發現的證據中的一小部分。事實上我們有大量的證據。
+我想先和各位解釋腐敗的郵寄選票系統。
+民主黨是如何系統性地策劃，特別使搖擺州的選票得以被修改。因為他們必須在（那幾個州）獲得勝選。他們不知道的是，事情比他們預期的要困難許多，因為我們在所有搖擺州都遙遙領先，比他們認為的多太多了。
+我們老早就知道，民主黨的政治機器是如何參與選舉舞弊。從底特律到費城，從密爾沃基市到亞特蘭大，太多地方。
+今年所不同的是，民主黨積極推動印刷並寄出數十、數百萬張郵寄選票。寄到不知名的收件人手裡，沒有任何保護措施。這讓舞弊和濫權演變到前所未見的程度。
+利用疫情作為藉口，民主黨的法官和政客，在投票前幾個月甚至幾週前大肆修改選舉章程。
+11月3號的選舉，我們的立法者很少參與其中，但按憲法要求他們是該參與其中。但非常罕見。不過，你會看到隨著我們持續提起訴訟，所發生的一切，這場選舉絕對都是違憲的。
+包括內華達和加州等許多州，向選民名單上的每個人郵寄了（總數）超百萬的有效選票，無論這些人是否要求郵寄選票，無論是死是活，他們都收到了選票。
+在其它州，如明尼蘇達、密歇根州或威斯康星州，在今年年中就發起了普遍缺席選票，（他們）向所有名單上的選民發送缺席選票申請表。無論這些人的身分為何，如此大量的擴充投票數量使欺詐的閘門大大敞開。
+眾所周知的事實是，這些選票中塞滿了沒有合法投票權的人的選票，包括那些死者、搬走的、甚至是在我們國家沒有公民身分的人。更有甚者，這些紀錄充斥著各種錯誤，錯誤地址、重複輸入和其它問題，而這些錯誤都沒有被質疑，從來沒有被質疑過。
+在搖擺州的許多縣內，登記選民的人數遠超出合格適齡的選民人數，包括密歇根州的67個縣。所有這些都是證據。
+在威斯康辛，該州的選舉委員會無法證實其中超過十萬人的居民身分，卻拒絕將這些人從選民名冊中移除。他們知道為什麼這樣。
+我知道，他們是非法選民。荒謬的是，儘管到了2020年，我們竟沒有任何方法來核實那些投票選民的合法性。
+而這是一次如此重要的選舉，我們無法確定他們是誰？是否是該州居民？甚或是他們是否是美國公民？
+我們無法得知。我們（發現）在所有搖擺州都有重大違規或徹底的欺詐行為。其票數遠遠超過反轉一個州的（選舉）結果所需的票數。
+換句話說，以威斯康星州為例。我們在選舉日當晚（得票）遠遠超前，他們最終使我們奇蹟般地輸掉了2萬票。
+我可以在這裡向您展示，在威斯康星州，我們領先了許多，然而在凌晨3點42分出現了這樣一個大量的灌票，大多數是拜登，幾乎全是給拜登。直到今天，每個人都在試圖弄清楚它的來源。
+但我從大贏變成小輸，就在這凌晨3點42分，就在威斯康星。
+這是一件糟糕、糟糕、非常糟糕的事。但是，我們將擁有超出許多倍的、與推翻該州所需的2萬張選票相比的票數。
+如果我們對舞弊的了解正確，喬·拜登不能當總統。
+我們談的是數十萬的選票。我們談論的數字是前所未見的。
+舉個例子，在某個州，我們落後7000票，但後來我們找到2萬、5萬、10萬、20萬的異議或舞弊選票，其中包括那些未經共和黨監票員驗證的選票。因為這些監票員被鎖在門外不被允許查看這些選票。
+還有那些11月3日參加現場投票的人，他們都為能投票感到興奮，他們很開心，以身為美國公民為傲。他們在現場表示他們想要投票，然而他們被告知他們不能投票。
+「很抱歉」，他們被告知，「很抱歉，你已經投過郵寄選票了。恭喜你，我們已經收到了你們的選票，你們不能投票。」他們不知道該如何是好，他們投訴無門，只好離開現場，說這很奇怪。但是也有許多人強烈地抗議、投訴。
+在很多情況下，他們填寫了臨時選票，但他們的選票沒被用上。事實上，這些選票全是投給川普的。換句話說，他們去現場投票，卻被告知已經投過票了，但他們其實尚未投票，他們只好離開，感到非常喪氣。他們失去了對我們選舉系統的信心。"""</span>
+<span class="n">tensionResult</span> <span class="o">=</span> <span class="n">keymoji</span><span class="p">.</span><span class="n">tension</span><span class="p">(</span><span class="n">inputSTR</span><span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<p>回傳結果 (JSON 格式):</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success!"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.1791</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1667</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1622</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1558</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1528</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1061</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2083</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1026</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1951</span><span class="p">,</span><span class="w"> </span><span class="mf">0.24</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"sense"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tension"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>在文章中修飾用詞「<strong>形容詞、副詞 <code>MODIFIER</code></strong>」、「<strong>成語、諺語 <code>IDIOM</code></strong>」 與「<strong>程度中心語 <code>DegreeHead</code> (e.g., 很、非常)</strong>」能提高整個句子的<strong>情緒張力 <code>Tension</code></strong>。</br>
+KeyMoji 利用 Articut 斷詞後的 POS，取出每 <code>180</code> 個字符裡<strong>修飾用詞數</strong>除以<strong>句子的詞彙數 <code>WordCount</code></strong>。試圖呈現文章中「平滑化後，每 <code>180</code> 個字符所呈現的<strong>情緒張力</strong>」係數。</br></p>
+<h3>情緒張力公式</h3>
+<p><img src="images/KeyMoji_img07-f05d3a88.png" title="Tension" alt="情緒張力公式" /></p>
+<h3>參數說明</h3>
+<table><thead>
+<tr>
+<th>參數</th>
+<th>型態</th>
+<th style="text-align: center">預設</th>
+<th>功能</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>inputSTR</strong></td>
+<td>str</td>
+<td style="text-align: center">&quot;&quot;</td>
+<td>將要送上 KeyMoji 情緒偵測處理的文字，至少 180 個字符。<br><code>注意！每次最大長度不得超過 6000 個字符</code>。</td>
+</tr>
+</tbody></table>
+<h3>回傳內容說明</h3>
+<table><thead>
+<tr>
+<th>回傳訊息</th>
+<th style="text-align: center">型態</th>
+<th>說明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td style="text-align: center">bool</td>
+<td>若成功執行並收到情緒偵測結果，回傳 <strong>True</strong>；失敗，則回傳 <strong>False</strong>。</td>
+</tr>
+<tr>
+<td>msg</td>
+<td style="text-align: center">str</td>
+<td>可能為以下的文字：</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Success!</strong>: 順利完成情緒偵測作業。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Invalid arguments.</strong>: 上傳參數錯誤，請重新檢查上傳時的參數是否符合規則名稱。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Invalid content_type.</strong>: 上傳格式必須為 Json 格式 (application/json)。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Your input_str is too long (over 6000 characters.)</strong>: input_str 超過 6000 字符。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Authentication Failed.</strong>: 無法驗証您的帳號，或是未購買<em>KeyMoji</em>方案。請再檢查一次您使用的帳號是否正確。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Invalid KeyMoji_Key.</strong>: 無效的 keymoji_key。請再檢查一次您的 keymoji_key 是否正確。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Invalid sense.</strong>: <strong>sense</strong> 所指定的參數不存在。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>request[&#39;context_sensitivity&#39;] only takes True/False.</strong>: <strong>context_sensitivity</strong> 只能是 boolean 格式。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>request[&#39;sense&#39;] should be set as &#39;tension&#39;, &#39;sense2&#39; or &#39;sense8&#39;, other settings don&#39;t make any sense to KeyMoji.</strong>: <strong>sense</strong> 需要指定其參數為 &#39;tension&#39;, &#39;sense2&#39; 或 &#39;sense8&#39; 字串。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Interval Server Error. (System will reboot in 5min, please try again later.)</strong>: 嗯…似乎我們的伺服器出了點狀況。我們正在努力修復中，5 分鐘內會自動重啟，請稍後再試一次。</td>
+</tr>
+<tr>
+<td>sense</td>
+<td style="text-align: center">str</td>
+<td>此次情緒偵測所使用的功能。</br><strong><code>此範例為 Tension。</code></strong></td>
+</tr>
+<tr>
+<td>results</td>
+<td style="text-align: center">list</td>
+<td>以 180 個字符為一個單位，將計算結果存儲至 list，分數區間為 [0, 1]。</td>
+</tr>
+</tbody></table>
+<h2 id='KeyMoji_5'>keymoji2visual</h2>
+<blockquote>
+<p>範例程式:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="n">keymoji</span><span class="p">.</span><span class="n">keymoji2visual</span><span class="p">(</span><span class="n">sense2Result</span><span class="p">)</span>
+</code></pre></div><h3>參數說明</h3>
+<table><thead>
+<tr>
+<th>參數</th>
+<th>型態</th>
+<th style="text-align: center">預設</th>
+<th>功能</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>resultDICT</strong></td>
+<td>list</td>
+<td style="text-align: center">[]</td>
+<td>對應參數<strong><code>sense</code></strong>結果的<strong><code>results</code></strong>欄位，不可為空值。</td>
+</tr>
+<tr>
+<td>path</td>
+<td>str</td>
+<td style="text-align: center">&quot;.&quot;</td>
+<td>預設為目前程式執行的位置，指定儲存圖片的目錄位置。</td>
+</tr>
+</tbody></table>
+<h3>回傳內容說明</h3>
+<table><thead>
+<tr>
+<th>回傳訊息</th>
+<th style="text-align: center">型態</th>
+<th>說明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td style="text-align: center">bool</td>
+<td>若成功執行並收到情緒偵測結果，回傳 <strong>True</strong>；失敗，則回傳 <strong>False</strong>。</td>
+</tr>
+<tr>
+<td>msg</td>
+<td style="text-align: center">str</td>
+<td>可能為以下的文字：</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Success!</strong>: 順利完成情緒偵測作業。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Invalid arguments.</strong>: 上傳參數錯誤，請重新檢查上傳時的參數是否符合規則名稱。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Invalid content_type.</strong>: 上傳格式必須為 Json 格式 (application/json)。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Your input_str is too long (over 6000 characters.)</strong>: input_str 超過 6000 字符。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Authentication Failed.</strong>: 無法驗証您的帳號，或是未購買<code>KeyMoji</code>方案。請再檢查一次您使用的帳號是否正確。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Invalid KeyMoji_Key.</strong>: 無效的 keymoji_key。請再檢查一次您的 keymoji_key 是否正確。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Invalid result.</strong>: <strong>results</strong>內容不符合指定參數<strong>sense</strong>。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>Invalid sense.</strong>: <strong>sense</strong> 所指定的參數不存在。</td>
+</tr>
+<tr>
+<td>sense</td>
+<td style="text-align: center">str</td>
+<td>此次情緒偵測所使用的功能。</td>
+</tr>
+<tr>
+<td>result</td>
+<td style="text-align: center">dict</td>
+<td>將繪製的圖表結果存儲至 dict，內容包含以下</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>name</strong>: 圖表的檔案名稱。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>base64</strong>: Sense2、Tension 為 <code>base64</code> 格式的圖檔。</br>Sense8 為 <code>base64</code> 格式的 .zip 壓縮檔。</td>
+</tr>
+</tbody></table>
+<h3>sense2</h3>
+<p><img src="images/sense2-47eb5348.png" title="sense2visual" alt="sense2" /></p>
+<h3>sense8</h3>
+<p><img src="images/sense8-5454ca63.png" title="sense8visual" alt="sense8" /></p>
+<h3>tension</h3>
+<p><img src="images/tension-7473086b.png" title="tensionvisual" alt="tension" /></p>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="python">Python</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>

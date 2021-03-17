@@ -1,0 +1,10 @@
+__pycache__
+.DS_Store
+*.info
+*.pyc
+*.json
+KeyMojiAPI.egg-info
+build.md
+/slate
+/build
+/dist
