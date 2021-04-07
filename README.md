@@ -12,7 +12,7 @@ pip3 install KeyMojiAPI
 
 ## 使用方法
 [KeyMoji Website Demo](https://api.droidtown.co/#keymoji)  
-[KeyMojiAPI Documentation](https://api.droidtown.co/KeyMoji/document/)
+[KeyMojiAPI Documentation](https://api.droidtown.co/KeyMojiAPI/document/)
 
 ### SENSE2
 ```python
