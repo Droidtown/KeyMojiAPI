@@ -67,7 +67,7 @@ class KeyMoji:
         except Exception as e:
             return {"status": False, "msg": e}
 
-    def keymoji2visual(self, resultDICT, path="."):
+    def keymoji2visual(self, resultDICT, path=".", filename=""):
         if "sense" not in resultDICT or "results" not in resultDICT:
             return {"status": False, "msg": "Invalid arguments."}
         resultDICT["username"] = self.username
@@ -78,12 +78,17 @@ class KeyMoji:
                 result = visualResult.json()
                 #pprint(result)
                 file_content = b64decode(result["result"]["base64"])
-                with open("{}/{}".format(path, result["result"]["name"]),"wb") as f:
-                    f.write(file_content)
-                return True
+                if filename:
+                    with open("{}/{}".format(path, filename),"wb") as f:
+                        f.write(file_content)
+                else:
+                    with open("{}/{}".format(path, result["result"]["name"]),"wb") as f:
+                        f.write(file_content)
+                del result["result"]
+                return result
             except Exception as e:
-                print(e)
-        return False
+                #print(e)
+                return {"status": False, "msg": str(e)}
 
 
 if __name__ == "__main__":
@@ -92,7 +97,7 @@ if __name__ == "__main__":
     inputSTR = "不要逃啊，卑鄙的傢伙。鬼殺隊一直在對你們有利的黑夜中戰鬥，我們都是有血有肉之軀的人，受傷之後無法簡單治好，失去的性命也無法挽回⋯⋯大哥沒有輸，他真的到了最後、守護到了最後。是你輸了，大哥才沒有輸！謝謝你，我心中的煉獄大哥。一直以來你在我面前擋住了很多攻擊、一直以來你都沒有放棄要成為更好的自己、一直以來有一個懦弱的我，一直躲在你後面，覺得自己很沒用，但你的任務圓滿結束了，從今天起，你可以好好休息。謝謝你一直以來的照顧，沒有讓在場的任何一個人死去。"
     sense2Result = keymoji.sense2(inputSTR)
     pprint(sense2Result)
-    print(keymoji.keymoji2visual(sense2Result))
+    print(keymoji.keymoji2visual(sense2Result, filename="kimetsu.png"))
 
     #sense8Result = keymoji.sense8(inputSTR)
     #pprint(sense8Result)
