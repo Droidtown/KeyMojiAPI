@@ -9,6 +9,10 @@ KeyMoji 關鍵情緒偵測 (**SENSE2、SENSE8、Tension**) 採用不同於其它
 ```sh
 pip3 install KeyMojiAPI
 ```
+or
+```sh
+python3 -m pip install KeyMojiAPI
+```
 
 ## 使用方法
 [KeyMoji Website Demo](https://api.droidtown.co/#keymoji)  
@@ -17,7 +21,8 @@ pip3 install KeyMojiAPI
 ### SENSE2
 ```python
 from KeyMojiAPI import KeyMoji
-keymoji = KeyMoji(username="your_username@mail.com", keymojiKey="your_keymoji_key")
+# 若您是使用 Docker 版本，無須填入 username, keymoji_key 參數
+keymoji = KeyMoji(username="", keymojiKey="")
 
 inputSTR = "他逃離了危險的災難"
 result = keymoji.sense2(inputSTR)
@@ -48,7 +53,8 @@ print(result)
 ### SENSE8
 ```python
 from KeyMojiAPI import KeyMoji
-keymoji = KeyMoji(username="your_username@mail.com", keymojiKey="your_keymoji_key")
+# 若您是使用 Docker 版本，無須填入 username, keymoji_key 參數
+keymoji = KeyMoji(username="", keymojiKey="")
 
 inputSTR = "他逃離了危險的災難"
 result = keymoji.sense8(inputSTR)
