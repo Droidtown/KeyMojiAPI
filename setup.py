@@ -39,7 +39,13 @@ setuptools.setup(
     ],
     packages=setuptools.find_packages(),
     include_package_data=True,
-    install_requires=["requests >= 2.25.1"],
+    install_requires=[
+        "requests >= 2.25.1",
+        "python-rapidjson >= 0.9.4",
+        "matplotlib >= 3.3.3",
+        "numpy >= 1.19.5",
+        "scipy >= 1.5.4"
+    ],
     classifiers=[
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3 :: Only",

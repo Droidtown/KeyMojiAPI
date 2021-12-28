@@ -860,15 +860,15 @@ KeyMoji 利用 Articut 斷詞後的 POS，取出每 <code>180</code> 個字符�
 <blockquote>
 <p>範例程式:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight python tab-python"><code><span class="n">result</span> <span class="o">=</span> <span class="n">keymoji</span><span class="p">.</span><span class="n">keymoji2visual</span><span class="p">(</span><span class="n">sense2Result</span><span class="p">)</span>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="c1"># sense2Result / sense8Result / tensionResult
+</span><span class="n">result</span> <span class="o">=</span> <span class="n">keymoji</span><span class="p">.</span><span class="n">keymoji2visual</span><span class="p">(</span><span class="n">sense2Result</span><span class="p">)</span>
 </code></pre></div>
 <blockquote>
 <p>回傳結果 (JSON 格式):</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success!"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sense"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sense2"</span><span class="w">
+    </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sense2/sense2.png saved."</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3>參數說明</h3>
 <table><thead>
@@ -883,13 +883,19 @@ KeyMoji 利用 Articut 斷詞後的 POS，取出每 <code>180</code> 個字符�
 <td><strong>resultDICT</strong></td>
 <td>list</td>
 <td style="text-align: center">[]</td>
-<td>對應參數<strong><code>sense</code></strong>結果的<strong><code>results</code></strong>欄位，不可為空值。</td>
+<td>填入 <strong>sense2</strong>, <strong>sense8</strong>, <strong>tension</strong> 分析的結果。</td>
 </tr>
 <tr>
 <td>path</td>
 <td>str</td>
-<td style="text-align: center">&quot;.&quot;</td>
-<td>預設為目前程式執行的位置，指定儲存圖片的目錄位置。</td>
+<td style="text-align: center">&quot;&quot;</td>
+<td>指定圖片的目錄位置。</td>
+</tr>
+<tr>
+<td>filename</td>
+<td>str</td>
+<td style="text-align: center">&quot;&quot;</td>
+<td>指定儲存的圖片名稱。</td>
 </tr>
 </tbody></table>
 <h3>回傳內容說明</h3>
@@ -913,7 +919,7 @@ KeyMoji 利用 Articut 斷詞後的 POS，取出每 <code>180</code> 個字符�
 <tr>
 <td></td>
 <td style="text-align: center"></td>
-<td>- <strong>Success!</strong>: 順利完成情緒偵測作業。</td>
+<td>- <strong>{path}/{filename}.png saved.</strong>: 圖片順利儲存。</td>
 </tr>
 <tr>
 <td></td>
