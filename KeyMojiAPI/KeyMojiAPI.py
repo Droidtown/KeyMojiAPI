@@ -272,7 +272,8 @@ class KeyMoji:
 
                 # Plot to PNG
                 fig.savefig(os.path.join(path, "{}_{}.png".format(filename, noStr)), format="png", dpi=150)
-                return {"status": True, "msg": "{}_{}.png".format(os.path.join(path, filename), noStr)}
+
+            return {"status": True, "msg": "{}.png".format(os.path.join(path, filename))}
 
         except Exception as e:
             return {"status": False, "msg": str(e)}
