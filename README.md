@@ -63,7 +63,7 @@ print(result)
 
 ```json
 {
-    "status": true,
+    "status": True,
     "msg": "Success!",
     "results": [
         {
