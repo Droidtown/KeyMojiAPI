@@ -15,7 +15,7 @@ import rapidjson as json
 import os
 
 class KeyMoji:
-    def __init__(self, username="", keymojiKey="", url="https://api.droidtown.co/KeyMoji"):
+    def __init__(self, username="", keymojiKey="", url="https://api.droidtown.co"):
         '''
         username = ""       # 你註冊時的 email。
         keymoji_key = ""    # 您完成付費後取得的 keymoji_key 值。
@@ -58,12 +58,12 @@ class KeyMoji:
             self.sense8Null = os.path.join(basePath, "KeyMojiAPI", "sense8_null.png")
 
 
-    def sense2(self, inputSTR, contextSenitivity=True):
+    def sense2(self, inputSTR, contextSenitivity=True, model="general", userDefinedDICT={}):
         if len(inputSTR) > self.strLenLimit:
             return {"status": False, "msg": "Your input_str is too long. (over {} characters.)".format(self.strLenLimit)}
         payload = {"username": self.username, "keymoji_key": self.keymojiKey,
-                   "input_str": inputSTR, "sense": "sense2", "context_sensitivity": contextSenitivity}
-        sense2Result = post("{}/API/".format(self.url), json=payload)
+                   "input_str": inputSTR, "sense": "sense2", "model": model, "context_sensitivity": contextSenitivity, "user_defined": userDefinedDICT}
+        sense2Result = post("{}/KeyMoji/API/".format(self.url), json=payload)
         try:
             resultDICT = sense2Result.json()
             return resultDICT
@@ -71,12 +71,12 @@ class KeyMoji:
             return {"status": False, "msg": e}
 
 
-    def sense8(self, inputSTR):
+    def sense8(self, inputSTR, model="general", userDefinedDICT={}):
         if len(inputSTR) > self.strLenLimit:
             return {"status": False, "msg": "Your input_str is too long. (over {} characters.)".format(self.strLenLimit)}
         payload = {"username": self.username, "keymoji_key": self.keymojiKey,
-                   "input_str": inputSTR, "sense": "sense8"}
-        sense8Result = post("{}/API/".format(self.url), json=payload)
+                   "input_str": inputSTR, "sense": "sense8", "model": model, "user_defined": userDefinedDICT}
+        sense8Result = post("{}/KeyMoji/API/".format(self.url), json=payload)
         try:
             resultDICT = sense8Result.json()
             return resultDICT
@@ -84,15 +84,15 @@ class KeyMoji:
             return {"status": False, "msg": e}
 
 
-    def tension(self, inputSTR):
+    def tension(self, inputSTR, userDefinedDICT={}):
         inputStrLen = len(inputSTR)
         if inputStrLen > self.strLenLimit:
             return {"status": False, "msg": "Your input_str is too long. (over {} characters.)".format(self.strLenLimit)}
         if inputStrLen < 180:
             return {"status": False, "msg": "Your length of input_str must contain at least 180 characters."}
         payload = {"username": self.username, "keymoji_key": self.keymojiKey,
-                   "input_str": inputSTR, "sense": "tension"}
-        tensionResult = post("{}/API/".format(self.url), json=payload)
+                   "input_str": inputSTR, "sense": "tension", "user_defined": userDefinedDICT}
+        tensionResult = post("{}/KeyMoji/API/".format(self.url), json=payload)
         try:
             resultDICT = tensionResult.json()
             return resultDICT
@@ -332,9 +332,9 @@ if __name__ == "__main__":
 
     keymoji = KeyMoji()
 
-    sense2Result = keymoji.sense2(inputSTR)
+    sense2Result = keymoji.sense2(inputSTR, model="general", userDefinedDICT={"positive": ["戰鬥"]})
     pprint(sense2Result)
-    print(keymoji.keymoji2visual(sense2Result, filename="kimetsu.png"))
+    #print(keymoji.keymoji2visual(sense2Result, filename="kimetsu.png"))
 
     #sense8Result = keymoji.sense8(inputSTR)
     #pprint(sense8Result)

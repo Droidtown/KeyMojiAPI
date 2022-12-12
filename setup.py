@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="KeyMojiAPI",
-    version="1.0.4",
+    version="1.0.5",
     author="Droidtown Linguistic Tech. Co. Ltd.",
     author_email="info@droidtown.co",
     description="""KeyMoji sentimental analysis system differs from other "amature-tagged" and "pure-ML/DL" text sentimental analysis solutions in many ways. KeyMoji combines "syntactic structure information", "formal semantics" and "lexical semantic model" in one calculating process to estimate the sentimental bias and distributions of sentiments in texts.""",
