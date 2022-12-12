@@ -48,7 +48,7 @@ print(result)
 
 ### Visualization
 
-![sense2](https://www.droidtown.co/static/public_img/sense2.png)
+![sense2](https://www.droidtown.co/static/public_img/sense2.png?raw=true)
 
 ### SENSE8
 ```python
@@ -63,7 +63,7 @@ print(result)
 
 ```json
 {
-    "status": true,
+    "status": True,
     "msg": "Success!",
     "results": [
         {
