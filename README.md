@@ -25,7 +25,7 @@ from KeyMojiAPI import KeyMoji
 keymoji = KeyMoji(username="", keymojiKey="")
 
 inputSTR = "他逃離了危險的災難"
-result = keymoji.sense2(inputSTR)
+result = keymoji.sense2(inputSTR, model="general", userDefinedDICT={"positive":[], "negative":[], "cursing":[]})
 print(result)
 ```
 
@@ -57,7 +57,7 @@ from KeyMojiAPI import KeyMoji
 keymoji = KeyMoji(username="", keymojiKey="")
 
 inputSTR = "他逃離了危險的災難"
-result = keymoji.sense8(inputSTR)
+result = keymoji.sense8(inputSTR, model="general", userDefinedDICT={"positive":[], "negative":[], "cursing":[]})
 print(result)
 ```
 
