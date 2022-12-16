@@ -367,7 +367,7 @@
 <tr>
 <td><strong>url</strong></td>
 <td>str</td>
-<td style="text-align: center">&quot;https://api.droidtown.co/KeyMoji&quot;</td>
+<td style="text-align: center">&quot;https://api.droidtown.co&quot;</td>
 <td>若您購買 KeyMoji Docker 版本，請設定自行架設 KeyMoji Docker 的服務網址。</td>
 </tr>
 </tbody></table>
@@ -376,7 +376,8 @@
 <p>範例程式:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight python tab-python"><code><span class="n">inputSTR</span> <span class="o">=</span> <span class="s">"他逃離了危險的災難"</span>
-<span class="n">sense2Result</span> <span class="o">=</span> <span class="n">keymoji</span><span class="p">.</span><span class="n">sense2</span><span class="p">(</span><span class="n">inputSTR</span><span class="p">)</span>
+<span class="n">sense2Result</span> <span class="o">=</span> <span class="n">keymoji</span><span class="p">.</span><span class="n">sense2</span><span class="p">(</span><span class="n">inputSTR</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s">"general"</span><span class="p">,</span>
+                              <span class="n">userDefinedDICT</span><span class="o">=</span><span class="p">{</span><span class="s">"positive"</span><span class="p">:</span> <span class="p">[],</span> <span class="s">"negative"</span><span class="p">:</span> <span class="p">[],</span> <span class="s">"cursing"</span><span class="p">:</span> <span class="p">[]})</span>
 </code></pre></div>
 <blockquote>
 <p>回傳結果 (JSON 格式):</p>
@@ -393,6 +394,7 @@
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"sense"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sense2"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"general"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v101"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3>參數說明</h3>
@@ -408,13 +410,55 @@
 <td><strong>inputSTR</strong></td>
 <td>str</td>
 <td style="text-align: center">&quot;&quot;</td>
-<td>將要送上 KeyMoji 情緒偵測處理的文字。<br><code>注意！每次最大長度不得超過 6000 個字符</code>。</td>
+<td>將要送上 KeyMoji 情緒偵測處理的文字。</br><code>注意！每次最大長度不得超過 6000 個字符</code>。</td>
 </tr>
 <tr>
 <td>contextSenitivity</td>
 <td>bool</td>
 <td style="text-align: center">True</td>
-<td>語境敏感開關，預設為 True。此參數為 True 時，前句的句子若有分數，若此句計算的結果無分數，則前句的分數會延續影響此句分數，直到下一句計算的結果有分數。</br>例如：<br><strong><code>contextSenitivity</code></strong> = <strong>True</strong>，<br><strong><code>inputSTR</code></strong> = <strong>&quot;好不容易離開思念的軌跡，回憶將我聯繫到過去&quot;</strong>，<br>結果為：<br><strong>&quot;好不容易離開思念的軌跡&quot;</strong> =&gt; -0.6043, <strong>&quot;回憶將我聯繫到過去&quot;</strong> =&gt; <strong><code>-0.4532</code></strong>；<br>反之，參數為 <strong>False</strong> 時，<strong>&quot;回憶將我聯繫到過去&quot;</strong> =&gt; <strong><code>0</code></strong>。</td>
+<td>語境敏感開關，預設為 True。此參數為 True 時，前句的句子若有分數，若此句計算的結果無分數，則前句的分數會延續影響此句分數，直到下一句計算的結果有分數。</br>例如：</br><strong><code>contextSenitivity</code></strong> = <strong>True</strong>，</br><strong><code>inputSTR</code></strong> = <strong>&quot;好不容易離開思念的軌跡，回憶將我聯繫到過去&quot;</strong>，</br>結果為：</br><strong>&quot;好不容易離開思念的軌跡&quot;</strong> =&gt; <strong><code>-0.6043</code></strong>, <strong>&quot;回憶將我聯繫到過去&quot;</strong> =&gt; <strong><code>-0.4532</code></strong>；</br>反之，參數為 <strong>False</strong> 時，<strong>&quot;回憶將我聯繫到過去&quot;</strong> =&gt; <strong><code>0</code></strong>。</td>
+</tr>
+<tr>
+<td>model</td>
+<td>str</td>
+<td style="text-align: center">&quot;general&quot;</td>
+<td>可為 &quot;general&quot;、&quot;hotel&quot;、&quot;restaurant&quot; 或 &quot;shopping&quot;，預設為 &quot;general&quot;。</br>指定不同的計算模型，將情緒偵測結果投射到二維 (SENSE2)、八維 (SENSE8) 的情緒空間。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: center"></td>
+<td>--<strong>general</strong>: 使用通用模型，依據 <strong><code>句型結構</code></strong> 計算文本的情緒分數。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: center"></td>
+<td>--<strong>hotel</strong>: 使用旅館評價模型，依據 <strong><code>訓練模型</code></strong> 計算文本的情緒分數。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: center"></td>
+<td>--<strong>restaurant</strong>: 使用餐廳評價模型，依據 <strong><code>訓練模型</code></strong> 計算文本的情緒分數。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: center"></td>
+<td>--<strong>shopping</strong>: 使用購物評價模型，依據 <strong><code>訓練模型</code></strong> 計算文本的情緒分數。</td>
+</tr>
+<tr>
+<td>context_sensitivity</td>
+<td>bool</td>
+<td style="text-align: center">True</td>
+<td>語境敏感開關，預設為 True。此參數為 True 時，前句的句子若有分數，若此句計算的結果無分數，則前句的分數會延續影響此句分數，直到下一句計算的結果有分數。</br>例如：</br><strong><code>context_sensitivity</code></strong> = <strong>True</strong>，</br><strong><code>input_str</code></strong> = <strong>&quot;好不容易離開思念的軌跡，回憶將我聯繫到過去&quot;</strong>，</br>結果為：</br><strong>&quot;好不容易離開思念的軌跡&quot;</strong> =&gt; <strong><code>-0.6043</code></strong>, <strong>&quot;回憶將我聯繫到過去&quot;</strong> =&gt; <strong><code>-0.4532</code></strong>；</br>反之，參數為 <strong>False</strong> 時，<strong>&quot;回憶將我聯繫到過去&quot;</strong> =&gt; <strong><code>0</code></strong>。</br><strong><code>將 model 指定為 &quot;general&quot; 時才有此功能</code></strong>。</td>
+</tr>
+<tr>
+<td>user_defined</td>
+<td>dict</td>
+<td style="text-align: center">{}</td>
+<td>使用者自訂的正向 <code>&quot;positive&quot;</code>、負向 <code>&quot;negative&quot;</code> 與 <code>&quot;cursing&quot;</code> 字典，若使用此功能，會優先計算其字典內的詞彙分數。</br>例如：{&quot;positive&quot;: [&quot;邪惡&quot;, &quot;地獄&quot;], &quot;negative&quot;: [&quot;正義&quot;, &quot;天堂&quot;]} 。</br><strong><code>若 positive 與 negative 有相同詞彙，則會相互抵銷其分數</code></strong>。</td>
 </tr>
 </tbody></table>
 <h3>回傳內容說明</h3>
@@ -483,12 +527,27 @@
 <tr>
 <td></td>
 <td style="text-align: center"></td>
+<td>- <strong>request[&#39;model&#39;] must be one of the models listed: &#39;general&#39;, &#39;hotel&#39;, &#39;shopping&#39; or &#39;restaurant&#39;.</strong>: <strong>model</strong> 需要指定其參數為 &#39;general&#39;, &#39;hotel&#39;, &#39;shopping&#39; 或 &#39;restaurant&#39; 字串。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>request[&#39;user_defined&#39;] Parsing ERROR. (Please check your the format and encoding.)</strong>: <strong>user_defined</strong> 必須是 DICT 格式，例如： {&quot;positive&quot;: [&quot;邪惡&quot;, &quot;地獄&quot;], &quot;negative&quot;: [&quot;正義&quot;, &quot;天堂&quot;]} 。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
 <td>- <strong>Interval Server Error. (System will reboot in 5min, please try again later.)</strong>: 嗯…似乎我們的伺服器出了點狀況。我們正在努力修復中，5 分鐘內會自動重啟，請稍後再試一次。</td>
 </tr>
 <tr>
 <td>sense</td>
 <td style="text-align: center">str</td>
 <td>此次情緒偵測所使用的功能。</br><strong><code>此範例為 sense2。</code></strong></td>
+</tr>
+<tr>
+<td>model</td>
+<td style="text-align: center">str</td>
+<td>此次情緒偵測所使用的模型。</br><strong><code>此範例為 general。</code></strong></td>
 </tr>
 <tr>
 <td>results</td>
@@ -508,7 +567,7 @@
 <tr>
 <td></td>
 <td style="text-align: center"></td>
-<td>- <strong>score</strong>: 計算 <code>input_str</code> 的情緒分數。<code>若</code><strong><code>context_sensitivity</code></strong><code>== **True** 時，會受到前句的結果影響，不同於單句計算的分數。</code></td>
+<td>- <strong>score</strong>: 計算 <code>input_str</code> 的情緒分數。<code>若</code><strong><code>context_sensitivity == True</code></strong><code>時，會受到前句的結果影響，不同於單句計算的分數。</code></td>
 </tr>
 <tr>
 <td></td>
@@ -540,7 +599,8 @@ KeyMoji 依據美國心理學家 <a href="https://en.wikipedia.org/wiki/Robert_P
 <p>範例程式:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight python tab-python"><code><span class="n">inputSTR</span> <span class="o">=</span> <span class="s">"他逃離了危險的災難"</span>
-<span class="n">sense8Result</span> <span class="o">=</span> <span class="n">keymoji</span><span class="p">.</span><span class="n">sense8</span><span class="p">(</span><span class="n">inputSTR</span><span class="p">)</span>
+<span class="n">sense8Result</span> <span class="o">=</span> <span class="n">keymoji</span><span class="p">.</span><span class="n">sense8</span><span class="p">(</span><span class="n">inputSTR</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s">"general"</span><span class="p">,</span>
+                              <span class="n">userDefinedDICT</span><span class="o">=</span><span class="p">{</span><span class="s">"positive"</span><span class="p">:</span> <span class="p">[],</span> <span class="s">"negative"</span><span class="p">:</span> <span class="p">[],</span> <span class="s">"cursing"</span><span class="p">:</span> <span class="p">[]})</span>
 </code></pre></div>
 <blockquote>
 <p>回傳結果 (JSON 格式):</p>
@@ -562,6 +622,7 @@ KeyMoji 依據美國心理學家 <a href="https://en.wikipedia.org/wiki/Robert_P
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"sense"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sense8"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"general"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v101"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3>參數說明</h3>
@@ -577,7 +638,43 @@ KeyMoji 依據美國心理學家 <a href="https://en.wikipedia.org/wiki/Robert_P
 <td><strong>inputSTR</strong></td>
 <td>str</td>
 <td style="text-align: center">&quot;&quot;</td>
-<td>將要送上 KeyMoji 情緒偵測處理的文字。<br><code>注意！每次最大長度不得超過 6000 個字符</code>。</td>
+<td>將要送上 KeyMoji 情緒偵測處理的文字。</br><code>注意！每次最大長度不得超過 6000 個字符</code>。</td>
+</tr>
+<tr>
+<td>model</td>
+<td>str</td>
+<td style="text-align: center">&quot;general&quot;</td>
+<td>可為 &quot;general&quot;、&quot;hotel&quot;、&quot;restaurant&quot; 或 &quot;shopping&quot;，預設為 &quot;general&quot;。</br>指定不同的計算模型，將情緒偵測結果投射到二維 (SENSE2)、八維 (SENSE8) 的情緒空間。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: center"></td>
+<td>--<strong>general</strong>: 使用通用模型，依據 <strong><code>句型結構</code></strong> 計算文本的情緒分數。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: center"></td>
+<td>--<strong>hotel</strong>: 使用旅館評價模型，依據 <strong><code>訓練模型</code></strong> 計算文本的情緒分數。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: center"></td>
+<td>--<strong>restaurant</strong>: 使用餐廳評價模型，依據 <strong><code>訓練模型</code></strong> 計算文本的情緒分數。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td style="text-align: center"></td>
+<td>--<strong>shopping</strong>: 使用購物評價模型，依據 <strong><code>訓練模型</code></strong> 計算文本的情緒分數。</td>
+</tr>
+<tr>
+<td>user_defined</td>
+<td>dict</td>
+<td style="text-align: center">{}</td>
+<td>使用者自訂的正向 <code>&quot;positive&quot;</code>、負向 <code>&quot;negative&quot;</code> 與 <code>&quot;cursing&quot;</code> 字典，若使用此功能，會優先計算其字典內的詞彙分數。</br>例如：{&quot;positive&quot;: [&quot;邪惡&quot;, &quot;地獄&quot;], &quot;negative&quot;: [&quot;正義&quot;, &quot;天堂&quot;]} 。</td>
 </tr>
 </tbody></table>
 
@@ -648,12 +745,27 @@ KeyMoji 依據美國心理學家 <a href="https://en.wikipedia.org/wiki/Robert_P
 <tr>
 <td></td>
 <td style="text-align: center"></td>
+<td>- <strong>request[&#39;model&#39;] must be one of the models listed: &#39;general&#39;, &#39;hotel&#39;, &#39;shopping&#39; or &#39;restaurant&#39;.</strong>: <strong>model</strong> 需要指定其參數為 &#39;general&#39;, &#39;hotel&#39;, &#39;shopping&#39; 或 &#39;restaurant&#39; 字串。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
+<td>- <strong>request[&#39;user_defined&#39;] Parsing ERROR. (Please check your the format and encoding.)</strong>: <strong>user_defined</strong> 必須是 DICT 格式，例如： {&quot;positive&quot;: [&quot;邪惡&quot;, &quot;地獄&quot;], &quot;negative&quot;: [&quot;正義&quot;, &quot;天堂&quot;]} 。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center"></td>
 <td>- <strong>Interval Server Error. (System will reboot in 5min, please try again later.)</strong>: 嗯…似乎我們的伺服器出了點狀況。我們正在努力修復中，5 分鐘內會自動重啟，請稍後再試一次。</td>
 </tr>
 <tr>
 <td>sense</td>
 <td style="text-align: center">str</td>
 <td>此次情緒偵測所使用的功能。</br><strong><code>此範例為 sense8。</code></strong></td>
+</tr>
+<tr>
+<td>model</td>
+<td style="text-align: center">str</td>
+<td>此次情緒偵測所使用的模型。</br><strong><code>此範例為 general。</code></strong></td>
 </tr>
 <tr>
 <td>results</td>
@@ -745,7 +857,7 @@ KeyMoji 依據美國心理學家 <a href="https://en.wikipedia.org/wiki/Robert_P
 還有那些11月3日參加現場投票的人，他們都為能投票感到興奮，他們很開心，以身為美國公民為傲。他們在現場表示他們想要投票，然而他們被告知他們不能投票。
 「很抱歉」，他們被告知，「很抱歉，你已經投過郵寄選票了。恭喜你，我們已經收到了你們的選票，你們不能投票。」他們不知道該如何是好，他們投訴無門，只好離開現場，說這很奇怪。但是也有許多人強烈地抗議、投訴。
 在很多情況下，他們填寫了臨時選票，但他們的選票沒被用上。事實上，這些選票全是投給川普的。換句話說，他們去現場投票，卻被告知已經投過票了，但他們其實尚未投票，他們只好離開，感到非常喪氣。他們失去了對我們選舉系統的信心。"""</span>
-<span class="n">tensionResult</span> <span class="o">=</span> <span class="n">keymoji</span><span class="p">.</span><span class="n">tension</span><span class="p">(</span><span class="n">inputSTR</span><span class="p">)</span>
+<span class="n">tensionResult</span> <span class="o">=</span> <span class="n">keymoji</span><span class="p">.</span><span class="n">tension</span><span class="p">(</span><span class="n">inputSTR</span><span class="p">,</span> <span class="n">userDefinedDICT</span><span class="o">=</span><span class="p">{</span><span class="s">"positive"</span><span class="p">:</span> <span class="p">[],</span> <span class="s">"negative"</span><span class="p">:</span> <span class="p">[],</span> <span class="s">"cursing"</span><span class="p">:</span> <span class="p">[]})</span>
 </code></pre></div>
 <blockquote>
 <p>回傳結果 (JSON 格式):</p>
@@ -774,7 +886,13 @@ KeyMoji 利用 Articut 斷詞後的 POS，取出每 <code>180</code> 個字符�
 <td><strong>inputSTR</strong></td>
 <td>str</td>
 <td style="text-align: center">&quot;&quot;</td>
-<td>將要送上 KeyMoji 情緒偵測處理的文字，至少 180 個字符。<br><code>注意！每次最大長度不得超過 6000 個字符</code>。</td>
+<td>將要送上 KeyMoji 情緒偵測處理的文字，至少 180 個字符。</br><code>注意！每次最大長度不得超過 6000 個字符</code>。</td>
+</tr>
+<tr>
+<td>user_defined</td>
+<td>dict</td>
+<td style="text-align: center">{}</td>
+<td>使用者自訂的正向 <code>&quot;positive&quot;</code>、負向 <code>&quot;negative&quot;</code> 與 <code>&quot;cursing&quot;</code> 字典，若使用此功能，會優先計算其字典內的詞彙分數。</br>例如：{&quot;positive&quot;: [&quot;邪惡&quot;, &quot;地獄&quot;], &quot;negative&quot;: [&quot;正義&quot;, &quot;天堂&quot;]} 。</td>
 </tr>
 </tbody></table>
 <h3>回傳內容說明</h3>
@@ -833,12 +951,12 @@ KeyMoji 利用 Articut 斷詞後的 POS，取出每 <code>180</code> 個字符�
 <tr>
 <td></td>
 <td style="text-align: center"></td>
-<td>- <strong>request[&#39;context_sensitivity&#39;] only takes True/False.</strong>: <strong>context_sensitivity</strong> 只能是 boolean 格式。</td>
+<td>- <strong>request[&#39;sense&#39;] should be set as &#39;tension&#39;, &#39;sense2&#39; or &#39;sense8&#39;, other settings don&#39;t make any sense to KeyMoji.</strong>: <strong>sense</strong> 需要指定其參數為 &#39;tension&#39;, &#39;sense2&#39; 或 &#39;sense8&#39; 字串。</td>
 </tr>
 <tr>
 <td></td>
 <td style="text-align: center"></td>
-<td>- <strong>request[&#39;sense&#39;] should be set as &#39;tension&#39;, &#39;sense2&#39; or &#39;sense8&#39;, other settings don&#39;t make any sense to KeyMoji.</strong>: <strong>sense</strong> 需要指定其參數為 &#39;tension&#39;, &#39;sense2&#39; 或 &#39;sense8&#39; 字串。</td>
+<td>- <strong>request[&#39;user_defined&#39;] Parsing ERROR. (Please check your the format and encoding.)</strong>: <strong>user_defined</strong> 必須是 DICT 格式，例如： {&quot;positive&quot;: [&quot;邪惡&quot;, &quot;地獄&quot;], &quot;negative&quot;: [&quot;正義&quot;, &quot;天堂&quot;]} 。</td>
 </tr>
 <tr>
 <td></td>
@@ -957,9 +1075,9 @@ KeyMoji 利用 Articut 斷詞後的 POS，取出每 <code>180</code> 個字符�
 <td>- <strong>Invalid sense.</strong>: <strong>sense</strong> 所指定的參數不存在。</td>
 </tr>
 <tr>
-<td>sense</td>
+<td>model</td>
 <td style="text-align: center">str</td>
-<td>此次情緒偵測所使用的功能。</td>
+<td>此次情緒偵測所使用的模型。</td>
 </tr>
 </tbody></table>
 <h3>sense2</h3>
