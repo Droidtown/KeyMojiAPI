@@ -25,8 +25,11 @@ from KeyMojiAPI import KeyMoji
 keymoji = KeyMoji(username="", keymojiKey="")
 
 inputSTR = "他逃離了危險的災難"
-result = keymoji.sense2(inputSTR, model="general", userDefinedDICT={"positive":[], "negative":[], "cursing":[]})
-print(result)
+# Sense2
+sense2Result = keymoji.sense2(inputSTR, model="general", userDefinedDICT={"positive":[], "negative":[], "cursing":[]})
+print(sense2Result)
+# Sense2 Visualization
+status = keymoji.keymoji2visual(sense2Result, filename="kimetsu.png")
 ```
 
 ```json
@@ -57,8 +60,10 @@ from KeyMojiAPI import KeyMoji
 keymoji = KeyMoji(username="", keymojiKey="")
 
 inputSTR = "他逃離了危險的災難"
-result = keymoji.sense8(inputSTR, model="general", userDefinedDICT={"positive":[], "negative":[], "cursing":[]})
-print(result)
+sense8Result = keymoji.sense8(inputSTR, model="general", userDefinedDICT={"positive":[], "negative":[], "cursing":[]})
+print(sense8Result)
+# Sense8 Visualization
+status = keymoji.keymoji2visual(sense8Result, filename="kimetsu.zip")
 ```
 
 ```json
